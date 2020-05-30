@@ -1,0 +1,40 @@
+{
+  "name": "jstoolkit",
+  "version": "1.0.0",
+  "description": "An attempt to gather all methods in one place.",
+  "main": "dist/main.js",
+  "dependencies": {
+    "@types/bluebird": "^3.5.32",
+    "@types/cheerio": "^0.22.18",
+    "@types/express": "^4.17.6",
+    "@types/node-fetch": "^2.5.7",
+    "@types/sequelize": "^4.28.9",
+    "@types/validator": "^13.0.0",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "sequelize": "^5.21.11",
+    "sqlite3": "^4.2.0",
+    "typescript": "^3.9.3"
+  },
+  "devDependencies": {
+    "tslint": "^6.1.2"
+  },
+  "scripts": {
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matlinski/jsToolkit.git"
+  },
+  "author": "Mateusz Matliński",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/matlinski/jsToolkit/issues"
+  },
+  "homepage": "https://github.com/matlinski/jsToolkit#readme"
+}
