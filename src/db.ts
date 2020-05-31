@@ -5,21 +5,16 @@ const sequelize = new Sequelize({
     storage: 'db.sqlite'
 });
 
-// class User extends Model {}
+class Method extends Model {}
+class Vars extends Model {}
 
-//   User.init({
-//     username: DataTypes.STRING,
-//     name: DataTypes.STRING
-//   }, { sequelize });
-  
-//   (async () => {
-  
-//     await sequelize.sync();
-  
-//     await User.create({
-//       username: 'matlinski',
-//       name: 'Mateusz Matlinski'
-//     });
-//   const displayUserDataValues = (User: User) => User.toJSON();
-//     console.log((await User.findAll()).map(displayUserDataValues));
-//   })();
+Method.init({
+  index: DataTypes.STRING,
+  header: DataTypes.STRING,
+  name: DataTypes.STRING,
+  category: DataTypes.STRING,
+  description: DataTypes.STRING,
+  vars:  DataTypes.STRING
+}, { sequelize });
+
+export { Method, sequelize };
