@@ -2,23 +2,23 @@ import * as cheerio from 'cheerio';
 import fetch from 'node-fetch';
 import e = require('express');
 
-const header2category = (header: string) => (header.startsWith('get ')) 
-    ?header.substring(header.indexOf(' ')+1, header.indexOf('.')) 
+const header2category = (header: string) => (header.startsWith('get '))
+    ?header.substring(header.indexOf(' ')+1, header.indexOf('.'))
     :header.substring(0, header.indexOf('.'));
-const header2name = (header: string)=> (header.match(/\W/)) 
+const header2name = (header: string)=> (header.match(/\W/))
     ?header.substring(header.indexOf('.', header.indexOf('.')+1) + 1, header.indexOf(' ', header.indexOf('.')))
     :header.substring(header.indexOf('.', header.indexOf('.')+1) + 1);
-    
+
 const fetchDOM = async (url: string)=>{
     const html = await fetch(url)
         .then(res=>res.text());
     const $ = cheerio.load(html);
-    
+
     const formatData = (header: Cheerio, section: Cheerio | undefined): {
         index: string,
         header: string,
-        name: string | undefined,
-        category: string | undefined,
+        name: string,
+        category: string,
         description: string
         vars: string
     } => {
@@ -26,8 +26,8 @@ const fetchDOM = async (url: string)=>{
         const headerId = header.find('span').text();
         header.find('span').text('');
         const headerText = header.text().trim();
-        const paragraphText = (typeof section !== 'undefined') 
-            ?section.find('p').text() 
+        const paragraphText = (typeof section !== 'undefined')
+            ?section.find('p').text()
             :'';
         if(!headerText.match(/\.prototype\./)) return{
             index: '',
@@ -52,8 +52,8 @@ const fetchDOM = async (url: string)=>{
     const data: {
         index: string,
         header: string,
-        name: string | undefined,
-        category: string | undefined,
+        name: string,
+        category: string,
         description: string
         vars: string
     }[] = [];
