@@ -20,7 +20,7 @@ const fetchDOM = async (url: string)=>{
         name: string,
         category: string,
         description: string
-        vars: string
+        vars: string[]
     } => {
         const headerVars = header.find('var').toArray().map(el=>$(el).text());
         const headerId = header.find('span').text();
@@ -35,7 +35,7 @@ const fetchDOM = async (url: string)=>{
             name: '',
             category: '',
             description: '',
-            vars: ''
+            vars: []
         };
         return {
             index: headerId,
@@ -43,7 +43,7 @@ const fetchDOM = async (url: string)=>{
             name: header2name(headerText),
             category: header2category(headerText),
             description: paragraphText,
-            vars: JSON.stringify(headerVars)
+            vars: headerVars
         };
     }
 
@@ -55,7 +55,7 @@ const fetchDOM = async (url: string)=>{
         name: string,
         category: string,
         description: string
-        vars: string
+        vars: string[]
     }[] = [];
     for (const section of sections) {
         const subsections = $(section).find('emu-clause')
